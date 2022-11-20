@@ -1,9 +1,13 @@
-
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.3-8892BF.svg)](https://php.net/)
+[![Build Status](https://app.travis-ci.com/ste80pa/php-retejs.svg?branch=main)](https://app.travis-ci.com/ste80pa/php-retejs)
+[![Coverage Status](https://coveralls.io/repos/github/ste80pa/php-retejs/badge.svg?branch=main)](https://coveralls.io/github/ste80pa/php-retejs?branch=main)
 # PHP retejs
+
+## Synopsis
 
 PHP implementation of the Engine for [ReteJS](https://github.com/retejs/rete) inspired by [D3 Node Engine](https://github.com/retejs/cpp-engine)
 
-# Usage example
+## Usage example
 
 ```php
 
@@ -65,6 +69,6 @@ echo 'the result is : ', $result->getOutput() . PHP_EOL;
 
 ```
 
-# License
+## License
 
 [MIT](https://opensource.org/licenses/MIT)
