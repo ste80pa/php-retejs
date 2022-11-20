@@ -1,0 +1,36 @@
+{
+    "name": "ste80pa/php-retejs",
+    "description": "",
+    "type": "library",
+    "authors" : [{
+        "name" : "Stefano Pallozzi",
+        "email" : "ste80pa@gmail.com",
+        "homepage" : "https://github.com/ste80pa",
+        "role" : "Developer"
+    }
+    ],
+    "license" : "MIT",
+    "homepage" : "https://github.com/ste80pa/php-retejs",
+    "keywords" : [
+        "retejs"
+    ],
+    "require": {
+        "php": ">=7.0",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ste80pa\\Retejs\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ste80pa\\Retejs\\Test\\": "test",
+            "Ste80pa\\Retejs\\Examples\\": "examples"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "php-coveralls/php-coveralls": "^2.5"
+    }
+}

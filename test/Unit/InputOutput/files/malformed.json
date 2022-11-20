@@ -1,0 +1,76 @@
+{
+  "id": "demo@0.1.0",
+  "nodes": {
+    "1": {
+      "id": 1,
+
+      "data": {
+        "num": 3
+      },
+      "group": null,
+      "inputs": [],
+      "outputs": [{
+        "connections": [{
+          "node": 3,
+          "input": 0
+        }, {
+          "node": 3,
+          "input": 1
+        }]
+      }],
+      "position": [0,0],
+      "title": "Number"
+    },
+    "3": {
+      "id": 3,
+      "data": {},
+      "group": null,
+      "inputs": [{
+        "connections": [{
+          "node": 1,
+          "output": 0
+        }]
+
+      },
+        {
+          "connections": [{
+            "node": 1,
+            "output": 0
+          }]
+        }
+      ],
+      "outputs": [{
+        "connections": [{
+          "node": 4,
+          "input": 0
+        }]
+      }],
+      "position": [0, 0],
+      "title": "Add"
+    },
+    "4": {
+      "id": 4,
+      "data": {},
+      "group": null,
+      "inputs": [{
+        "connections": [{
+          "node": 1,
+          "output": 0
+        }]
+      },
+        {
+          "connections": [{
+            "node": 3,
+            "output": 0
+          }]
+        }
+      ],
+      "outputs": [{
+        "connections": []
+      }],
+      "position": [0,0],
+      "title": "Add"
+    }
+  },
+  "groups": {
+}
