@@ -18,18 +18,13 @@
         </testsuite>
     </testsuites>
 
-    <coverage cacheDirectory=".phpunit.cache/code-coverage"
-              includeUncoveredFiles="true"
-              processUncoveredFiles="true">
+    <coverage includeUncoveredFiles="true" processUncoveredFiles="true">
         <include>
             <directory suffix=".php">src</directory>
         </include>
         <report>
-            <html outputDirectory="html-coverage" lowUpperBound="50" highLowerBound="90"/>
+            <clover outputFile="build/logs/clover.xml"/>
         </report>
     </coverage>
 
-    <logging>
-        <log type="coverage-clover" target="build/logs/clover.xml"/>
-    </logging>
 </phpunit>
