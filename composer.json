@@ -15,7 +15,7 @@
         "retejs"
     ],
     "require": {
-        "php": ">=7.3",
+        "php": ">=7.0",
         "ext-json": "*"
     },
     "autoload": {
@@ -30,7 +30,7 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5",
-        "php-coveralls/php-coveralls": "^2.5"
+        "phpunit/phpunit": "*",
+        "php-coveralls/php-coveralls": "*"
     }
 }

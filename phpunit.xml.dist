@@ -22,9 +22,14 @@
         <include>
             <directory suffix=".php">src</directory>
         </include>
-        <report>
-            <clover outputFile="build/logs/clover.xml"/>
-        </report>
     </coverage>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./src</directory>
+        </whitelist>
+    </filter>
+    <logging>
+        <log type="coverage-clover" target="build/logs/clover.xml"/>
+    </logging>
 
 </phpunit>

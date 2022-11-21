@@ -3,3 +3,4 @@ composer.lock
 /html-coverage/
 /vendor/
 /.idea/
+/build/
