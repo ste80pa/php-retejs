@@ -38,12 +38,12 @@ class ReteLoader
     /**
      * @param array $data
      * @return \Ste80pa\Retejs\Engine\Rete
+     * @throws \Ste80pa\Retejs\Exception\InvalidInputTypeException
      * @throws \Ste80pa\Retejs\Exception\MalformedReteJsException
+     * @throws \Ste80pa\Retejs\Exception\MissingParameterException
      */
     public function load(array $data): Rete
     {
-        $nodes = [];
-
         if (!isset($data['id'])) {
             throw new MalformedReteJsException("Missing property 'id'");
         }
@@ -54,12 +54,12 @@ class ReteLoader
 
         list($name, $version) = explode('@', $data['id']);
 
+        $rete = new Rete($name, $version);
+
         foreach ($data['nodes'] as $nodeData) {
-            $node = new Node();
-            $node->fromArray($nodeData);
-            $nodes[$node->getId()] = $node;
+            $rete->addNode((new Node())->fromArray($nodeData));
         }
 
-        return new Rete($name, $version, $nodes);
+        return $rete;
     }
 }

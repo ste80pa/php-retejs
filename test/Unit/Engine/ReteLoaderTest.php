@@ -189,7 +189,9 @@ class ReteLoaderTest extends TestCase
     /**
      * @covers \Ste80pa\Retejs\Engine\ReteLoader::load
      * @return void
+     * @throws \Ste80pa\Retejs\Exception\InvalidInputTypeException
      * @throws \Ste80pa\Retejs\Exception\MalformedReteJsException
+     * @throws \Ste80pa\Retejs\Exception\MissingParameterException
      */
     public function testLoadMissingId()
     {
@@ -201,7 +203,9 @@ class ReteLoaderTest extends TestCase
     /**
      * @covers \Ste80pa\Retejs\Engine\ReteLoader::load
      * @return void
+     * @throws \Ste80pa\Retejs\Exception\InvalidInputTypeException
      * @throws \Ste80pa\Retejs\Exception\MalformedReteJsException
+     * @throws \Ste80pa\Retejs\Exception\MissingParameterException
      */
     public function testLoadMissingNodes()
     {
@@ -213,7 +217,9 @@ class ReteLoaderTest extends TestCase
     /**
      * @covers \Ste80pa\Retejs\Engine\ReteLoader::load
      * @return void
+     * @throws \Ste80pa\Retejs\Exception\InvalidInputTypeException
      * @throws \Ste80pa\Retejs\Exception\MalformedReteJsException
+     * @throws \Ste80pa\Retejs\Exception\MissingParameterException
      */
     public function testLoadMalformedInput()
     {
@@ -240,7 +246,10 @@ class ReteLoaderTest extends TestCase
      * @covers \Ste80pa\Retejs\Engine\Rete::getId
      * @covers \Ste80pa\Retejs\Engine\Rete::getNodes
      * @covers \Ste80pa\Retejs\Engine\ReteLoader::load
+     * @covers \Ste80pa\Retejs\Engine\Rete::addNode
+     * @throws \Ste80pa\Retejs\Exception\InvalidInputTypeException
      * @throws \Ste80pa\Retejs\Exception\MalformedReteJsException
+     * @throws \Ste80pa\Retejs\Exception\MissingParameterException
      */
     public function testLoad()
     {

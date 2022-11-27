@@ -65,14 +65,13 @@ class Rete implements VersionedInterface
     /**
      * @param $name
      * @param $version
-     * @param $nodes
      */
-    public function __construct($name, $version, $nodes)
+    public function __construct($name, $version)
     {
         $this->name = $name;
         $this->version = $version;
         $this->id = "$name@$version";
-        $this->nodes = $nodes;
+        $this->nodes = [];
     }
 
     /**
@@ -146,5 +145,15 @@ class Rete implements VersionedInterface
     public function getNodes()
     {
         return $this->nodes;
+    }
+
+    /**
+     * @param \Ste80pa\Retejs\Engine\Node $node
+     * @return $this
+     */
+    public function addNode(Node $node): Rete
+    {
+        $this->nodes[$node->getId()] = $node;
+        return $this;
     }
 }

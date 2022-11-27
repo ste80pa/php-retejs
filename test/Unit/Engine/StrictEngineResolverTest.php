@@ -105,6 +105,7 @@ class StrictEngineResolverTest extends TestCase
 
     /**
      * @covers \Ste80pa\Retejs\Engine\StrictEngineResolver::add
+     * @covers \Ste80pa\Retejs\Engine\StrictEngineResolver::getAll
      * @throws \Ste80pa\Retejs\Exception\EngineNotFoundException
      */
     public function testAdd()
@@ -123,5 +124,7 @@ class StrictEngineResolverTest extends TestCase
         foreach ($engines as $engine) {
             self::assertEquals($engine, $resolver->get($engine));
         }
+
+        self::assertEquals($engines, array_values($resolver->getAll()));
     }
 }

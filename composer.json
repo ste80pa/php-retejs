@@ -31,6 +31,12 @@
     },
     "require-dev": {
         "phpunit/phpunit": "*",
-        "php-coveralls/php-coveralls": "*"
+        "php-coveralls/php-coveralls": "*",
+        "infection/infection": "*"
+    },
+    "config": {
+        "allow-plugins": {
+            "infection/extension-installer": true
+        }
     }
 }

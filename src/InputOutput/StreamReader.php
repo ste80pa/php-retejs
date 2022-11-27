@@ -28,8 +28,9 @@ declare(strict_types=1);
 
 namespace Ste80pa\Retejs\InputOutput;
 
-use JsonException;
 use Ste80pa\Retejs\Exception\InputOutputException;
+
+use function is_resource;
 
 /**
  *
@@ -44,26 +45,21 @@ class StreamReader implements ReaderInterface
      */
     public function read($resource)
     {
+        if (!is_resource($resource)) {
+            throw new InputOutputException(
+                'Supplied resource is not a valid stream resource',
+                InputOutputException::INVALID_RESOURCE
+            );
+        }
+
         $json = stream_get_contents($resource);
 
         if ($json === false) {
-            throw new InputOutputException('Unable to read form stream');
+            throw new InputOutputException('Unable to read form stream', InputOutputException::UNREADABLE_STREAM);
         }
 
         if ($json === '') {
-            throw new InputOutputException('Empty stream');
-        }
-
-        if (PHP_VERSION_ID >= 70300) {
-            try {
-                return (array)json_decode($json, true, 512, JSON_THROW_ON_ERROR);
-            }catch (JsonException $exception){
-                throw new InputOutputException(
-                    $exception->getMessage(),
-                    $exception->getCode(),
-                    $exception
-                );
-            }
+            throw new InputOutputException('Empty stream', InputOutputException::EMPTY_STREAM);
         }
 
         $data = json_decode($json, true);
@@ -72,6 +68,6 @@ class StreamReader implements ReaderInterface
             return $data;
         }
 
-        throw new InputOutputException(json_last_error_msg());
+        throw new InputOutputException(json_last_error_msg(), InputOutputException::DECODE_ERROR);
     }
 }

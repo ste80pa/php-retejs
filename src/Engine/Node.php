@@ -122,11 +122,11 @@ class Node
 
     /**
      * @param array $data
-     * @return void
+     * @return \Ste80pa\Retejs\Engine\Node
      * @throws \Ste80pa\Retejs\Exception\InvalidInputTypeException
      * @throws \Ste80pa\Retejs\Exception\MissingParameterException
      */
-    public function fromArray(array $data)
+    public function fromArray(array $data): Node
     {
         $this->id = $data['id'];
 
@@ -160,6 +160,8 @@ class Node
             $input->fromArray($inputData);
             $this->inputs[$inputId] = $input;
         }
+
+        return $this;
     }
 
     /**

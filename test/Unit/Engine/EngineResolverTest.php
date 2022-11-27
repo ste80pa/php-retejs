@@ -151,5 +151,4 @@ class EngineResolverTest extends TestCase
 
         self::assertEquals($engine3, $engine);
     }
-
 }

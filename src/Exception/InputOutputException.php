@@ -35,4 +35,8 @@ use Exception;
  */
 class InputOutputException extends Exception {
 
+    const UNREADABLE_STREAM = 1000;
+    const EMPTY_STREAM = 1001;
+    const DECODE_ERROR = 1002;
+    const INVALID_RESOURCE = 1003;
 }

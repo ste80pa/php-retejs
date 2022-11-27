@@ -39,33 +39,32 @@ class StreamReaderTest extends TestCase
      * @covers \Ste80pa\Retejs\InputOutput\StreamReader::read
      * @return void
      */
-    public function testEmptyStreamRead()
+    public function testEmptyStream()
     {
         $handle = fopen('php://memory', 'rwb');
         fwrite($handle, '');
         fseek($handle, 0);
 
-
         $streamReader = new StreamReader();
 
         $this->expectException(InputOutputException::class);
+        $this->expectExceptionCode(InputOutputException::EMPTY_STREAM);
         $streamReader->read($handle);
     }
+
 
     /**
      * @covers \Ste80pa\Retejs\InputOutput\StreamReader::read
      * @return void
      */
-    public function testNullStreamRead()
+    public function testInvalidResource()
     {
-        $handle = fopen('php://memory', 'rwb');
-        @fwrite($handle, null);
-        fseek($handle, 0);
-
+        $handle = 'string';
 
         $streamReader = new StreamReader();
 
         $this->expectException(InputOutputException::class);
+        $this->expectExceptionCode(InputOutputException::INVALID_RESOURCE);
         $streamReader->read($handle);
     }
 
@@ -73,7 +72,7 @@ class StreamReaderTest extends TestCase
      * @covers \Ste80pa\Retejs\InputOutput\StreamReader::read
      * @return void
      */
-    public function testInvalidJsonStreamRead()
+    public function testDecodeError()
     {
         $handle = fopen('php://memory', 'rwb');
         fwrite($handle, '{ "id": "demo@0.1.0", "nodes": [}');
@@ -81,9 +80,8 @@ class StreamReaderTest extends TestCase
 
         $streamReader = new StreamReader();
 
-
         $this->expectException(InputOutputException::class);
-
+        $this->expectExceptionCode(InputOutputException::DECODE_ERROR);
         $streamReader->read($handle);
     }
 
@@ -93,7 +91,7 @@ class StreamReaderTest extends TestCase
      * @return void
      * @throws \Ste80pa\Retejs\Exception\InputOutputException
      */
-    public function testValidJsonStreamRead()
+    public function testValidJson()
     {
         $handle = fopen('php://memory', 'rwb');
         fwrite($handle, '{ "id": "demo@0.1.0", "nodes": []}');
