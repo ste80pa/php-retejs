@@ -31,7 +31,7 @@ before_script:
   - composer install --prefer-source --no-interaction
 
 script:
-  - php vendor/bin/phpunit
+  - XDEBUG_MODE=coverage php vendor/bin/phpunit
 
 after_success:
   - travis_retry php vendor/bin/php-coveralls -v
