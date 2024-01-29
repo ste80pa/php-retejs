@@ -30,6 +30,8 @@ namespace Ste80pa\Retejs\Engine;
 
 use Ste80pa\Retejs\Exception\MissingWorkerException;
 
+use function count;
+
 
 /**
  *
@@ -66,7 +68,6 @@ class Processor implements ProcessorInterface
         $context = new Context($engine, $rete, $userData);
         $start = $rete->getStartNode();
 
-
         $this->backProcess($start, $context);
         $this->forwardProcess($start, $context);
 
@@ -95,17 +96,33 @@ class Processor implements ProcessorInterface
         $inputs = [];
 
         foreach ($node->getInputs() as $id => $input) {
-            $outputData = [];
+
+            $outputData = null;
+            $hasOutputData = false;
+
             foreach ($input->getConnections() as $connection) {
-                // TODO: check
-                $output = $this->backProcess($context->getRete()->getNode($connection), $context);
+
+                $output = $context->getNodeOutput($context->getRete()->getNode($connection->getNode()));
+
+                if(empty($output)) {
+                    $output = $this->backProcess($context->getRete()->getNode($connection), $context);
+                }
+
                 if (!isset($output[$connection->getOutput()])) {
                     continue;
                 }
-                $outputData[] = $output[$connection->getOutput()];
+
+                $outputData = $output[$connection->getOutput()];
+                $hasOutputData = true;
             }
 
-            $inputs[$id] = $outputData;
+            if($hasOutputData) {
+                $inputs[$id] = $outputData;
+            }
+        }
+
+        if(empty($inputs) && count($node->getInputs())) {
+            return [];
         }
 
         return $context->execute($node, $inputs);
